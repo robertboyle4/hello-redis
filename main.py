@@ -1,24 +1,29 @@
-#!/usr/bin/env python3
+# Python 3 server example
+from http.server import BaseHTTPRequestHandler, HTTPServer
+import time
 
-import redis
+hostName = "localhost"
+serverPort = 8080
 
-redis_host = "10.195.69.3"
-redis_port = 6379
-redis_password = ""
+class MyServer(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(bytes("<html><head><title>https://pythonbasics.org</title></head>", "utf-8"))
+        self.wfile.write(bytes("<p>Request: %s</p>" % self.path, "utf-8"))
+        self.wfile.write(bytes("<body>", "utf-8"))
+        self.wfile.write(bytes("<p>This is an example web server.</p>", "utf-8"))
+        self.wfile.write(bytes("</body></html>", "utf-8"))
 
-def hello_redis():
+if __name__ == "__main__":
+    webServer = HTTPServer((hostName, serverPort), MyServer)
+    print("Server started http://%s:%s" % (hostName, serverPort))
+
     try:
+        webServer.serve_forever()
+    except KeyboardInterrupt:
+        pass
 
-        r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True)
-
-        r.set("msg:hello", "Hello Redis!!!")
-
-        msg = r.get("msg:hello")
-        print(msg)
-
-    except Exception as e:
-        print(e)
-
-
-if __name__ == '__main__':
-    hello_redis()
+    webServer.server_close()
+    print("Server stopped.")
