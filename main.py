@@ -2,7 +2,7 @@
 
 import redis
 
-redis_host = "localhost"
+redis_host = "10.195.69.3"
 redis_port = 6379
 redis_password = ""
 
