@@ -1,8 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
 import redis
 
-redis_host = "10.195.69.3"
+redis_host = "10.84.154.251"
 redis_port = 6379
 redis_password = ""
 hostName = "0.0.0.0"
