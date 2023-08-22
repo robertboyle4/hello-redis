@@ -1,20 +1,31 @@
-# Python 3 server example
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
+import redis
 
-hostName = "localhost"
+redis_host = "10.195.69.3"
+redis_port = 6379
+redis_password = ""
+hostName = "0.0.0.0"
 serverPort = 8080
 
 class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
-        self.wfile.write(bytes("<html><head><title>https://pythonbasics.org</title></head>", "utf-8"))
-        self.wfile.write(bytes("<p>Request: %s</p>" % self.path, "utf-8"))
-        self.wfile.write(bytes("<body>", "utf-8"))
-        self.wfile.write(bytes("<p>This is an example web server.</p>", "utf-8"))
-        self.wfile.write(bytes("</body></html>", "utf-8"))
+
+        try:
+
+            r = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True)
+
+            r.set("msg:hello", "Hello Redis!!!")
+
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+
+            msg = r.get("msg:hello")
+            self.wfile.write(bytes(msg, "utf-8"))
+
+        except Exception as e:
+            print(e)
 
 if __name__ == "__main__":
     webServer = HTTPServer((hostName, serverPort), MyServer)
