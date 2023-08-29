@@ -20,4 +20,4 @@ jobs:
       
       - name: Echo variable
         run: |
-          echo ${{ VAR_TEST }}
+          echo ${{ secrets.VAR_TEST }}
