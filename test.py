@@ -3,6 +3,7 @@ import re
 import sys
 import json
 import os
+from typing import Optional
 
 def test(test1):
   test2 = os.environ.get("VAR_TEST", "Not Found")
