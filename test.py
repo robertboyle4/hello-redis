@@ -1,8 +1,6 @@
 
 import re
 import sys
-from google.oauth2 import service_account
-from google.auth.transport import requests
 import base64
 from pathlib import Path
 import argparse
