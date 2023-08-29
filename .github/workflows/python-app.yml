@@ -7,8 +7,6 @@ on:
 jobs:
   push-rules:
     runs-on: ubuntu-latest
-    env:
-      VAR_TEST: secrets.VAR_TEST
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v2
@@ -20,4 +18,4 @@ jobs:
       
       - name: Echo variable
         run: |
-          echo ${{ secrets.VAR_TEST }}
+          python3 test.py "${{ secrets.VAR_TEST }}"
