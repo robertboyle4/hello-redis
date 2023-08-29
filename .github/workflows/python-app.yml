@@ -8,7 +8,7 @@ jobs:
   push-rules:
     runs-on: ubuntu-latest
     env:
-      VAR_TEST: ${{ secrets.VAR_TEST }}
+      VAR_TEST: secrets.VAR_TEST
     steps:
       - name: Checkout repo content
         uses: actions/checkout@v2
