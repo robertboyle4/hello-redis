@@ -6,8 +6,8 @@ import os
 
 def test(test1):
   test2 = os.environ.get("VAR_TEST", "Not Found")
-  print "TEST1: $test1"
-  print "TEST2: $test2"
+  print("TEST1: $test1")
+  print("TEST2: $test2")
 
 def initialize_command_line_args(
     args: Optional[Sequence[str]] = None) -> Optional[argparse.Namespace]:
