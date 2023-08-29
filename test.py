@@ -4,6 +4,7 @@ import sys
 import json
 import os
 from typing import Optional
+from typing import Sequence
 
 def test(test1):
   test2 = os.environ.get("VAR_TEST", "Not Found")
