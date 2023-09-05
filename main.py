@@ -1,7 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import redis
 
-redis_host = "10.84.154.251"
+redis_host = os.environ.get('REDIS_IP')
 redis_port = 6379
 redis_password = ""
 hostName = "0.0.0.0"
@@ -21,7 +21,7 @@ class MyServer(BaseHTTPRequestHandler):
             self.end_headers()
 
             msg = r.get("msg:hello")
-            self.wfile.write(bytes(msg, "utf-8"))
+            self.wfile.write(bytes('<div style="text-align: center; padding-top: 200px"><h1>' + msg + '</h1></div>', "utf-8"))
 
         except Exception as e:
             print(e)
