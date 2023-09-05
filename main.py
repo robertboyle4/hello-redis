@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import redis
+import os
 
 redis_host = os.environ.get('REDIS_IP')
 redis_port = 6379
